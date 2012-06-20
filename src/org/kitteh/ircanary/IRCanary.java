@@ -15,7 +15,6 @@ import net.canarymod.hook.command.PlayerCommandHook;
 import net.canarymod.hook.player.*;
 import net.canarymod.plugin.Plugin;
 import net.canarymod.plugin.PluginListener;
-import net.canarymod.plugin.PluginLoader;
 import net.canarymod.plugin.Priority;
 
 public class IRCanary extends Plugin {
@@ -29,7 +28,7 @@ public class IRCanary extends Plugin {
         @Override
         public Hook onBan(BanHook hook) {
             if (IRCanary.this.allowKickBanUpdates) {
-                this.plugin.sendIRCMessage(IRCanary.this.banMessage.replace("%admin", hook.getModerator().getName()).replace("%player", hook.getBannedPlayer().getName()).replace("%reason", hook.getBanReason()));
+                this.plugin.sendIRCMessage(IRCanary.this.banMessage.replace("%admin", hook.getModerator().getName()).replace("%player", hook.getBannedPlayer().getName()).replace("%reason", hook.getReason()));
             }
             return hook;
         }
@@ -70,7 +69,7 @@ public class IRCanary extends Plugin {
         @Override
         public Hook onKick(KickHook hook) {
             if (IRCanary.this.allowKickBanUpdates) {
-                this.plugin.sendIRCMessage(IRCanary.this.kickMessage.replace("%admin", hook.getKickingPlayer().getName()).replace("%player", hook.getKickedPlayer().getName()).replace("%reason", hook.getKickReason()));
+                this.plugin.sendIRCMessage(IRCanary.this.kickMessage.replace("%admin", hook.getKickingPlayer().getName()).replace("%player", hook.getKickedPlayer().getName()).replace("%reason", hook.getReason()));
             }
             return hook;
         }
