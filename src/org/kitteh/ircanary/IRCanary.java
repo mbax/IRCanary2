@@ -9,6 +9,7 @@ import java.util.logging.Logger;
 
 import net.canarymod.Canary;
 import net.canarymod.api.entity.Player;
+import net.canarymod.config.Configuration;
 import net.canarymod.config.ConfigurationFile;
 import net.canarymod.hook.Hook;
 import net.canarymod.hook.command.PlayerCommandHook;
@@ -123,7 +124,7 @@ public class IRCanary extends Plugin {
             dir.mkdir();
         }
         try {
-            final ConfigurationFile ircProperties = new ConfigurationFile("IRCanary/config.properties");
+            final ConfigurationFile ircProperties = Configuration.getPluginConfig("IRCanary");
             this.serverHost = ircProperties.getString("server-host", "localhost");
             this.serverPort = ircProperties.getInt("server-port", 6667);
             this.nickname = ircProperties.getString("bot-nickname", "aMinecraftBot");
